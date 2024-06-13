@@ -18,7 +18,6 @@ function botaoFoiPressionado(textoDigitado){
 
 
 
-// Nao precisa se preocupar muito com essa parte daqui pra baixo agora
 export default function App() {
   const [text, setText] = React.useState('');
 
