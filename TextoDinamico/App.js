@@ -18,7 +18,6 @@ export default function App() {
           onChangeText={text => setText(text)}
         />
       </View>
-      
     </View>
   );
 }
