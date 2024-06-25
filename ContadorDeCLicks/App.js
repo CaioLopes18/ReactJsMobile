@@ -14,7 +14,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>{Count}</Text>
       <Button  mode="contained" onPress={() => setCount(Count+1)}>
-        Press me
+        Press
       </Button>
     </View>
   );
