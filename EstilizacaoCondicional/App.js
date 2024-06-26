@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import { useState } from 'react';
 
+/* *Objetivo:** Alterar a cor do texto com base em uma condição. */
+
 export default function App() {
 
   const [checked, setChecked] = useState(false);
