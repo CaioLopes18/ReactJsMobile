@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,View,FlatList } from 'react-native';
 import * as React from 'react';
 import { useState } from 'react';
-import { Modal, Portal, Text, Button,Picker, PaperProvider, TextInput,List } from 'react-native-paper';
+import { Modal, Portal, Text, Button,Picker, PaperProvider, TextInput,List, Icon, IconButton } from 'react-native-paper';
 
 
 export default function App() {
@@ -46,8 +46,7 @@ export default function App() {
               />
             )}
           />
-        </View>
-        <View>
+          <View>
           <Portal>
             <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
               <TextInput onChangeText={Text=>setSpentType(Text)}/>
@@ -69,12 +68,20 @@ export default function App() {
               </Button>
             </Modal>
           </Portal>
-          <Button 
-          style={{marginLeft:-60}}
-            icon="plus"
+          <View style={{
+            position:"absolute",
+            right:10,
+            bottom:10
+          }}> 
+            <Button
+            
             buttonColor='orange'
             onPress={showModal}
-           />
+            >
+              <Text style={{fontSize:20}}>+</Text>
+            </Button>          
+          </View>
+        </View>
         </View>
       </View>
     </PaperProvider>
