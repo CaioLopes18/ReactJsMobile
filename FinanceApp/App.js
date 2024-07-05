@@ -1,19 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,View } from 'react-native';
 import * as React from 'react';
-
+import { useState } from 'react';
 import {  Text, PaperProvider, BottomNavigation } from 'react-native-paper';
-import Add from './add';
-import Lista from './list';
+import Add from './addItem';
+import Lista from './showList';
 
-const listRoute= () =><Lista containerStyle={styles.listContainer}/>;
-
-const AlbumsRoute = () => <Text>Teste</Text>;
-
-const RecentsRoute = () => <Add/>;
 
 
 export default function App() {
+  const [list, setList] = useState([
+    {
+      type: "alimentação",
+      value: "24.90",
+      description: "hamburguer"
+    }
+  ]);
+  
+  const listRoute= () =><Lista containerStyle={styles.listContainer} showList={list}/>;
+  
+  const AlbumsRoute = () => <Text>Teste</Text>;
+  
+  const RecentsRoute = () => <Add addItem={setList}  showList={list}/>;
+  
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'list', title: 'Lista', focusedIcon: '', unfocusedIcon: ''},

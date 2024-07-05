@@ -3,20 +3,22 @@ import { View,StyleSheet} from 'react-native';
 import { useState } from 'react';
 import { Button, PaperProvider, TextInput } from 'react-native-paper';
 
-export const saveValues = (a,b,c)=>{
-  tempList = {
-    "type":a,
-    "value":b,
-    "description":c
-  }
-  console.log(JSON.stringify(tempList))
-}
 
 const Add = (props) => {
+  
+
   const [spentType,setSpentType] = useState("")
   const [spentValue,setSpentValue] = useState(0)
   const [spentDescription,setSpentDescription] = useState("")
 
+  const handlePress = (a,b,c) => {
+    const novoObjeto = {
+      type: a,
+      value: b,
+      description: c
+    };
+    props.addItem([...props.showList,novoObjeto])
+  };
   return (
     <PaperProvider>
       <View style={styles.container}>
@@ -41,7 +43,9 @@ const Add = (props) => {
         />
         </View>
         <View style={{alignItems:'center'}}>
-          <Button icon="camera" mode="contained" onPress={() => saveValues(spentType,spentValue,spentDescription)}>
+          <Button icon="camera" mode="contained" onPress={()=>{
+            handlePress(spentType, spentValue, spentDescription)
+          }}>
             Press me
         </Button>
         </View>
