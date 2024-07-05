@@ -43,10 +43,10 @@ const Add = (props) => {
         />
         </View>
         <View style={{alignItems:'center'}}>
-          <Button icon="camera" mode="contained" onPress={()=>{
+          <Button mode="contained" onPress={()=>{
             handlePress(spentType, spentValue, spentDescription)
           }}>
-            Press me
+            Adicionar
         </Button>
         </View>
       </View>
