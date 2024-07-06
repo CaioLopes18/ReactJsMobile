@@ -1,12 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,View } from 'react-native';
-import * as React from 'react';
 import { useState } from 'react';
 import {  Text, PaperProvider, BottomNavigation } from 'react-native-paper';
 import Add from './addItem';
 import Lista from './showList';
-
-
+import PizzaGraph from './GraphPizza';
 
 export default function App() {
   const [list, setList] = useState([
@@ -17,23 +14,23 @@ export default function App() {
     }
   ]);
   
-  const listRoute= () =><Lista containerStyle={styles.listContainer} showList={list}/>;
+  const listRoute= () =><Lista containerStyle={styles.listContainer} List={list}/>;
   
-  const AlbumsRoute = () => <Text>Teste</Text>;
+  const AlbumsRoute = () => <PizzaGraph list={list}/>
   
-  const RecentsRoute = () => <Add addItem={setList}  showList={list}/>;
+  const addRoute = () => <Add addItem={setList}  List={list}/>;
   
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'list', title: 'Lista', focusedIcon: '', unfocusedIcon: ''},
-    { key: 'albums', title: 'Estatisticas', focusedIcon: '' },
-    { key: 'recents', title: 'Adicionar', focusedIcon: 'plus' },
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'list', title: 'Lista', focusedIcon: 'folder'},
+    { key: 'albums', title: 'Estatisticas', focusedIcon: 'database' },
+    { key: 'add', title: 'Adicionar', focusedIcon: 'plus' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     list: listRoute,
     albums: AlbumsRoute,
-    recents: RecentsRoute,
+    add: addRoute,
   });
   return (
     <PaperProvider>

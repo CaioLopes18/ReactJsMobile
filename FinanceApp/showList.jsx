@@ -10,7 +10,7 @@ const Lista = (props) => {
   
     <View style={{flexGrow:1}}>
       <FlatList
-        data={props.showList}
+        data={props.List}
         renderItem={({ item }) => (
           <List.Item
             title={item.type}

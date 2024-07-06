@@ -17,7 +17,7 @@ const Add = (props) => {
       value: b,
       description: c
     };
-    props.addItem([...props.showList,novoObjeto])
+    props.addItem([...props.List,novoObjeto])
   };
   return (
     <PaperProvider>
