@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, PaperProvider, TextInput } from "react-native-paper";
 import { useState } from "react";
 
-export default function AsyncStorageTeste({navigation}) {
+export default function AsyncStorageTeste({ navigation }) {
   const [nome, setNome] = useState("");
   const saveData = async (value) => {
     try {
@@ -13,22 +13,21 @@ export default function AsyncStorageTeste({navigation}) {
       alert("Erro ao salvar o dado");
     }
   };
-  const getData = async () =>{
+  const getData = async () => {
     try {
       const value = await AsyncStorage.getItem("@nomePessoa");
       value != null ? alert(value) : alert("Dado não encontrado");
-    }catch(e){
+    } catch (e) {
       alert("Erro ao recuperar o dado");
     }
-  }
-  const deleteData = async () =>{
-    try{
+  };
+  const deleteData = async () => {
+    try {
       await AsyncStorage.removeItem("@nomePessoa");
-    }
-    catch(e){
+    } catch (e) {
       alert("Erro ao deletar o dado");
     }
-  }
+  };
   return (
     <PaperProvider>
       <View style={styles.container}>
@@ -37,18 +36,33 @@ export default function AsyncStorageTeste({navigation}) {
           value={nome}
           onChangeText={(text) => setNome(text)}
         />
-        <View style={{ marginTop: 20 ,alignItems:"center"}}>
-          <Button mode="contained" onPress={() => {saveData(nome)}}>
+        <View style={{ marginTop: 20, alignItems: "center" }}>
+          <Button
+            mode="contained"
+            onPress={() => {
+              saveData(nome);
+            }}
+          >
             Save
           </Button>
         </View>
-        <View style={{ marginTop: 20 ,alignItems:"center"}}>
-          <Button mode="contained" onPress={() => {getData()}}>
+        <View style={{ marginTop: 20, alignItems: "center" }}>
+          <Button
+            mode="contained"
+            onPress={() => {
+              getData();
+            }}
+          >
             Get
           </Button>
         </View>
-        <View style={{ marginTop: 20 ,alignItems:"center"}}>
-          <Button mode="contained" onPress={() => {deleteData()}}>
+        <View style={{ marginTop: 20, alignItems: "center" }}>
+          <Button
+            mode="contained"
+            onPress={() => {
+              deleteData();
+            }}
+          >
             Delete
           </Button>
         </View>

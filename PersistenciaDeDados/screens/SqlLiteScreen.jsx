@@ -1,4 +1,4 @@
-import { View,StyleSheet  } from "react-native";
+import { View, StyleSheet } from "react-native";
 import openDatabase from "../db";
 import { useEffect, useState } from "react";
 import { Button, TextInput } from "react-native-paper";
@@ -13,18 +13,17 @@ export default function SqlLiteScreen() {
   useEffect(() => {
     const rows = db.getAllSync("SELECT * FROM usuarios", []);
     console.log(JSON.stringify(rows));
-  }, []);
+  }, [db]);
 
   const addUsuario = async () => {
-    try{
+    try {
       await db.withTransactionSync(() => {
         console.log(nome, email);
-        db.execSync(
-          `INSERT INTO usuarios (nome, email) VALUES (?,?)`,[nome,email]);
+        db.runAsync("INSERT INTO usuarios (nome, email) VALUES (?,?)", [nome, email]);
       });
-    }catch(e){
+    } catch (e) {
       alert("Erro ao adicionar o usuário");
-      console.log(e)
+      console.log(e);
     }
   };
 
@@ -35,13 +34,18 @@ export default function SqlLiteScreen() {
         value={nome}
         onChangeText={(text) => setNome(text)}
       />
-      <TextInput 
+      <TextInput
         label="Email"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <View style={{ marginTop: 20, alignItems: "center" }}>
-        <Button mode="contained" onPress={() => { addUsuario()}}>
+        <Button
+          mode="contained"
+          onPress={() => {
+            addUsuario();
+          }}
+        >
           Save
         </Button>
       </View>

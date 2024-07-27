@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS usuarios (
 let _db = null;
 
 export default function openDatabase() {
-    if (!_db){
-        _db = SQLite.openDatabaseSync(DATABASE_NAME);
-        _db.withTransactionSync(()=>{
-            _db.execSync(SQL_CREATE_ENTRIES)
-        });
-    }
-    return _db;
-    }
+  if (!_db) {
+    _db = SQLite.openDatabaseSync(DATABASE_NAME);
+    _db.withTransactionSync(() => {
+      _db.execSync(SQL_CREATE_ENTRIES);
+    });
+  }
+  return _db;
+}
